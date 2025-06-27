@@ -2,14 +2,19 @@ unit mvc.model.entity.impl.cliente;
 
 interface
 
-uses mvc.model.entity.interfaces;
+uses mvc.model.entity.interfaces, mvc.utils.impl.atributos;
 
 type
+    [Tabela('CLIENTE')]
     TCliente = class(TInterfacedObject, iCliente)
     private
+      [Campo('CODIGO')]
       FCodigo: Integer;
+      [Campo('NOME')]
       FNome: string;
+      [Campo('CIDADE')]
       FCidade: string;
+      [Campo('ESTADO')]
       FEstado: string;
 
     public

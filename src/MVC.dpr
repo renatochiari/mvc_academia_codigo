@@ -12,7 +12,13 @@ uses
   mvc.model.connection.interfaces in 'model\connection\mvc.model.connection.interfaces.pas',
   mvc.model.connection.impl.firedac in 'model\connection\impl\mvc.model.connection.impl.firedac.pas',
   mvc.model.connection.impl.query in 'model\connection\impl\mvc.model.connection.impl.query.pas',
-  mvc.model.connection.impl.configuration in 'model\connection\impl\mvc.model.connection.impl.configuration.pas';
+  mvc.model.connection.impl.configuration in 'model\connection\impl\mvc.model.connection.impl.configuration.pas',
+  mvc.model.dao.interfaces in 'model\dao\mvc.model.dao.interfaces.pas',
+  mvc.model.dao.impl.daogenerico in 'model\dao\impl\mvc.model.dao.impl.daogenerico.pas',
+  mvc.utils.interfaces in 'utils\mvc.utils.interfaces.pas',
+  mvc.utils.impl.query in 'utils\impl\mvc.utils.impl.query.pas',
+  mvc.utils.impl.rttihelper in 'utils\impl\mvc.utils.impl.rttihelper.pas',
+  mvc.utils.impl.atributos in 'utils\impl\mvc.utils.impl.atributos.pas';
 
 {$R *.res}
 

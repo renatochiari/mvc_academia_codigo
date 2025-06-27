@@ -1,0 +1,40 @@
+unit mvc.utils.impl.atributos;
+
+interface
+
+type
+    Campo = class(TCustomAttribute)
+    private
+      FName: string;
+
+    public
+      constructor Create(aName: string);
+      property Name: string read FName;
+    end;
+
+    Tabela = class(TCustomAttribute)
+    private
+      FName: string;
+
+    public
+      constructor Create(aName: string);
+      property Name: string read FName;
+    end;
+
+implementation
+
+{ Campo }
+
+constructor Campo.Create(aName: string);
+begin
+     FName := aName;
+end;
+
+{ Tabela }
+
+constructor Tabela.Create(aName: string);
+begin
+     FName := aName;
+end;
+
+end.

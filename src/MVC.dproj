@@ -137,6 +137,12 @@
         <DCCReference Include="model\connection\impl\mvc.model.connection.impl.firedac.pas"/>
         <DCCReference Include="model\connection\impl\mvc.model.connection.impl.query.pas"/>
         <DCCReference Include="model\connection\impl\mvc.model.connection.impl.configuration.pas"/>
+        <DCCReference Include="model\dao\mvc.model.dao.interfaces.pas"/>
+        <DCCReference Include="model\dao\impl\mvc.model.dao.impl.daogenerico.pas"/>
+        <DCCReference Include="utils\mvc.utils.interfaces.pas"/>
+        <DCCReference Include="utils\impl\mvc.utils.impl.query.pas"/>
+        <DCCReference Include="utils\impl\mvc.utils.impl.rttihelper.pas"/>
+        <DCCReference Include="utils\impl\mvc.utils.impl.atributos.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
