@@ -2,73 +2,86 @@ unit mvc.model.dao.impl.daogenerico;
 
 interface
 
-uses mvc.model.dao.interfaces, Data.DB;
+uses mvc.model.dao.interfaces, Data.DB, mvc.model.connection.interfaces,
+  mvc.model.connection.impl.firedac, System.Generics.Collections;
 
 type
-    TDAO<T: IInterface> = class(TInterfacedObject, iDAO<T>)
+    TDAO = class(TInterfacedObject, iDAO)
     private
+      FParent: IInterface;
+
+      FConexao: iConnection;
+      FQuery: iQuery;
+      FDataSet: TDataSet;
+      FLista: TDictionary<string, Variant>;
 
     public
-      constructor Create;
+      constructor Create(Parent: IInterface);
       destructor Destroy; override;
-      class function New: iDAO<T>;
-      function Listar: iDAO<T>;
-      function ListarPorId(Id: Variant): iDAO<T>;
-      function Excluir: iDAO<T>;
-      function Atualizar: iDAO<T>;
-      function Inserir: iDAO<T>;
+      class function New(Parent: IInterface): iDAO;
+      function Listar: iDAO;
+      function ListarPorId: iDAO;
+      function Excluir: iDAO;
+      function Atualizar: iDAO;
+      function Inserir: iDAO;
       function DataSet: TDataSet;
 
     end;
 
 implementation
 
+uses
+  mvc.model.connection.impl.query;
+
 { TDAO<T> }
 
-function TDAO<T>.Atualizar: iDAO<T>;
+function TDAO.Atualizar: iDAO;
 begin
 
 end;
 
-constructor TDAO<T>.Create;
+constructor TDAO.Create(Parent: IInterface);
+begin
+     FParent := Parent;
+     FConexao := TConnectionFiredac.New;
+     FQuery := TQuery.New(FConexao);
+     FDataSet := TDataSet.Create(nil);
+end;
+
+function TDAO.DataSet: TDataSet;
 begin
 
 end;
 
-function TDAO<T>.DataSet: TDataSet;
-begin
-
-end;
-
-destructor TDAO<T>.Destroy;
+destructor TDAO.Destroy;
 begin
 
   inherited;
 end;
 
-function TDAO<T>.Excluir: iDAO<T>;
+function TDAO.Excluir: iDAO;
 begin
 
 end;
 
-function TDAO<T>.Inserir: iDAO<T>;
+function TDAO.Inserir: iDAO;
 begin
 
 end;
 
-function TDAO<T>.Listar: iDAO<T>;
+function TDAO.Listar: iDAO;
 begin
 
 end;
 
-function TDAO<T>.ListarPorId(Id: Variant): iDAO<T>;
+function TDAO.ListarPorId: iDAO;
 begin
 
 end;
 
-class function TDAO<T>.New: iDAO<T>;
+class function TDAO.New(Parent: IInterface): iDAO;
 begin
-
+     Result := Self.Create(Parent);
 end;
 
 end.

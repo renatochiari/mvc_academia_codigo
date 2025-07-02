@@ -2,12 +2,16 @@ unit mvc.utils.interfaces;
 
 interface
 
+uses
+  System.Generics.Collections;
+
 type
     iQuery = interface
-      function Insert: string;
-      function Update: string;
+      procedure FieldParameter(var Value: TDictionary<string, Variant>);
+      function SelectWithWhere(Value: Boolean): string;
       function Delete: string;
-      function Select: string;
+      function Update: string;
+      function Insert: string;
     end;
 
     iUtils = interface

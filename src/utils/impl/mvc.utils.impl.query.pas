@@ -2,7 +2,7 @@ unit mvc.utils.impl.query;
 
 interface
 
-uses mvc.utils.interfaces;
+uses mvc.utils.interfaces, System.Generics.Collections;
 
 type
     TQuery = class(TInterfacedObject, iQuery)
@@ -11,17 +11,18 @@ type
 
       function Fields: string;
       function Params: string;
-      function NomeTabela: string;
-
-      constructor Create(Parent: IInterface);
-      destructor Destroy; override;
+      function Where: string;
+      function TableName: string;
+      function FieldsParamsUpdate: string;
 
     public
       class function New(Parent: IInterface): iQuery;
-      function Insert: string;
-      function Update: string;
+      procedure FieldParameter(var Value: TDictionary<string, Variant>);
+      function SelectWithWhere(Value: Boolean): string;
       function Delete: string;
-      function Select: string;
+      function Update: string;
+      function Insert: string;
+
     end;
 
 implementation
@@ -31,20 +32,14 @@ uses
 
 { TQuery }
 
-constructor TQuery.Create(Parent: IInterface);
-begin
-     FParent := TObject(Parent);
-end;
-
 function TQuery.Delete: string;
 begin
 
 end;
 
-destructor TQuery.Destroy;
+procedure TQuery.FieldParameter(var Value: TDictionary<string, Variant>);
 begin
 
-  inherited;
 end;
 
 function TQuery.Fields: string;
@@ -71,67 +66,89 @@ begin
      end;
 end;
 
+function TQuery.FieldsParamsUpdate: string;
+begin
+
+end;
+
 function TQuery.Insert: string;
 begin
-     Result := 'INSERT INTO ' + NomeTabela;
+     Result := 'INSERT INTO ' + TableName;
      Result := Result + ' (' + Fields + ') ';
      Result := Result + ' VALUES (' + Params + ');';
 end;
 
 class function TQuery.New(Parent: IInterface): iQuery;
 begin
-     Result := Self.Create(Parent);
+     Result := Self.Create;
 end;
 
 function TQuery.Params: string;
 var
-   lContexto: TRttiContext;
-   lTipo: TRttiType;
+   ctxRtti: TRttiContext;
+   typRtti: TRttiType;
+   lField: TRttiField;
 
 begin
-     lContexto := TRttiContext.Create;
-     try
-          lTipo := lContexto.GetType(FParent.ClassInfo);
-
-          for var i in lTipo.GetFields do
-          begin
-               if (not i.Tem<Campo>)
-               then Break;
-
-               Result := Result + ':' + i.GetAttribute<Campo>.Name + ', ';
-          end;
-
-     finally
-          Result := Copy(Result, 0, Result.Length-2) + ' ';
-          lContexto.Free;
-     end;
-end;
-
-function TQuery.Select: string;
-begin
+     ctxRtti := TRttiContext.Create;
 
 end;
 
-function TQuery.NomeTabela: string;
+function TQuery.SelectWithWhere(Value: Boolean): string;
+begin
+     Result := 'SELECT * FROM ' + TableName;
+     if (not Value)
+     then Exit;
+
+     Result := Result + ' WHERE ' + Where;
+end;
+
+function TQuery.TableName: string;
 var
-   lContexto: TRttiContext;
-   lTipo: TRttiType;
+   vCtxRtti: TRttiContext;
+   vTypRtti: TRttiType;
 
 begin
-     lContexto := TRttiContext.Create;
+     vCtxRtti := TRttiContext.Create;
      try
-          lTipo := lContexto.GetType(FParent.ClassInfo);
-          if (lTipo.Tem<Tabela>)
-          then Result := lTipo.GetAttribute<Tabela>.Name;
+          vTypRtti := vCtxRtti.GetType(FParent.ClassInfo);
+          if (vTypRtti.Tem<Tabela>)
+          then Result := vTypRtti.GetAttribute<Tabela>.Name;
 
      finally
-          lContexto.Free;
+          vCtxRtti.Free;
      end;
 end;
 
 function TQuery.Update: string;
 begin
+     Result := 'UPDATE ' + TableName;
+     Result := Result + ' SET ' + FieldsParamsUpdate;
+     Result := Result + ' WHERE ' + Where;
+end;
 
+function TQuery.Where: string;
+var
+   lCtxRtti: TRttiContext;
+   lTipo: TRttiType;
+
+begin
+     Result := '';
+
+     lCtxRtti := TRttiContext.Create;
+     try
+          lTipo := lCtxRtti.GetType(FParent.ClassInfo);
+          for var i in lTipo.GetFields do
+          begin
+               if (not i.Tem<PK>)
+               then Continue;
+
+               Result := Result + i.GetAttribute<Campo>.Name + ' = :' + i.GetAttribute<Campo>.Name + ' AND ';
+          end;
+     finally
+          Result := Copy(Result, 0, Length(Result) - 4) + ' ';
+          lCtxRtti.Free;
+     end;
 end;
 
 end.

@@ -143,6 +143,8 @@
         <DCCReference Include="utils\impl\mvc.utils.impl.query.pas"/>
         <DCCReference Include="utils\impl\mvc.utils.impl.rttihelper.pas"/>
         <DCCReference Include="utils\impl\mvc.utils.impl.atributos.pas"/>
+        <DCCReference Include="controller\mvc.controller.interfaces.pas"/>
+        <DCCReference Include="controller\impl\mvc.controller.imple.controller.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -164,7 +166,7 @@
                     <Source Name="MainSource">MVC.dpr</Source>
                 </Source>
             </Delphi.Personality>
-            <Deployment Version="5">
+            <Deployment Version="4">
                 <DeployFile LocalName="Win32\Debug\MVC.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>MVC.exe</RemoteName>
@@ -181,6 +183,16 @@
                     </Platform>
                     <Platform Name="Win32">
                         <Operation>0</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidClasses">
+                    <Platform Name="Android">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>classes</RemoteDir>
+                        <Operation>64</Operation>
                     </Platform>
                 </DeployClass>
                 <DeployClass Name="AndroidFileProvider">
