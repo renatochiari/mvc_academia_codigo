@@ -20,7 +20,8 @@ uses
   mvc.utils.impl.rttihelper in 'utils\impl\mvc.utils.impl.rttihelper.pas',
   mvc.utils.impl.atributos in 'utils\impl\mvc.utils.impl.atributos.pas',
   mvc.controller.interfaces in 'controller\mvc.controller.interfaces.pas',
-  mvc.controller.imple.controller in 'controller\impl\mvc.controller.imple.controller.pas';
+  mvc.controller.imple.controller in 'controller\impl\mvc.controller.imple.controller.pas',
+  mvc.utils.impl.utils in 'utils\impl\mvc.utils.impl.utils.pas';
 
 {$R *.res}
 

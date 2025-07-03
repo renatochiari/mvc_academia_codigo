@@ -46,6 +46,8 @@ begin
      FConexao := TConnectionFiredac.New;
      FQuery := TQuery.New(FConexao);
      FDataSet := TDataSet.Create(nil);
+     FLista := TDictionary<string, Variant>.Create;
+
 end;
 
 function TDAO.DataSet: TDataSet;

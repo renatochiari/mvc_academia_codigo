@@ -22,12 +22,9 @@ type
     end;
 
     PK = class(TCustomAttribute)
-    private
-      FName: string;
+    end;
 
-    public
-      constructor Create(aName: string);
-      property Name: string read FName;
+    FK = class(TCustomAttribute)
     end;
 
 implementation
@@ -42,13 +39,6 @@ end;
 { Tabela }
 
 constructor Tabela.Create(aName: string);
-begin
-     FName := aName;
-end;
-
-{ PK }
-
-constructor PK.Create(aName: string);
 begin
      FName := aName;
 end;

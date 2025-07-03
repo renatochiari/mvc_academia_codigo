@@ -145,6 +145,7 @@
         <DCCReference Include="utils\impl\mvc.utils.impl.atributos.pas"/>
         <DCCReference Include="controller\mvc.controller.interfaces.pas"/>
         <DCCReference Include="controller\impl\mvc.controller.imple.controller.pas"/>
+        <DCCReference Include="utils\impl\mvc.utils.impl.utils.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
