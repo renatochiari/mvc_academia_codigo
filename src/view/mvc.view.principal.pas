@@ -5,7 +5,8 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
-  mvc.model.entity.impl.cliente, mvc.utils.impl.query;
+  mvc.model.entity.impl.cliente, mvc.utils.impl.query,
+  mvc.controller.imple.controller, mvc.controller.interfaces;
 
 type
   TForm1 = class(TForm)
@@ -27,9 +28,13 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-     var lCliente := TCliente.New;
-     Memo1.Lines.Clear;
-     Memo1.Lines.Add(TQuery.New(lCliente).Insert);
+     var lController := TController.New;
+     var lCliente := lController.Entity.Cliente
+         .SetNome('Renato')
+         .SetCidade('Dracena')
+         .SetEstado('SP');
+
+     lController.Dao(lCliente).Inserir;
 end;
 
 end.

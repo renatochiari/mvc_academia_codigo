@@ -8,7 +8,7 @@ type
     [Tabela('CLIENTE')]
     TCliente = class(TInterfacedObject, iCliente)
     private
-      [Campo('CODIGO')]
+      [Campo('CODIGO'), PK]
       FCodigo: Integer;
       [Campo('NOME')]
       FNome: string;

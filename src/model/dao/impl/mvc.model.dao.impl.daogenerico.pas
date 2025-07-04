@@ -3,7 +3,8 @@ unit mvc.model.dao.impl.daogenerico;
 interface
 
 uses mvc.model.dao.interfaces, Data.DB, mvc.model.connection.interfaces,
-  mvc.model.connection.impl.firedac, System.Generics.Collections;
+  mvc.model.connection.impl.firedac, System.Generics.Collections,
+  mvc.utils.impl.utils;
 
 type
     TDAO = class(TInterfacedObject, iDAO)
@@ -37,7 +38,7 @@ uses
 
 function TDAO.Atualizar: iDAO;
 begin
-
+     Result := Self;
 end;
 
 constructor TDAO.Create(Parent: IInterface);
@@ -47,38 +48,40 @@ begin
      FQuery := TQuery.New(FConexao);
      FDataSet := TDataSet.Create(nil);
      FLista := TDictionary<string, Variant>.Create;
-
+     TUtils.New(FParent).Query.FieldParameter(FLista);
 end;
 
 function TDAO.DataSet: TDataSet;
 begin
-
+     Result := FDataSet;
 end;
 
 destructor TDAO.Destroy;
 begin
 
-  inherited;
+     inherited;
 end;
 
 function TDAO.Excluir: iDAO;
 begin
-
+     Result := Self;
 end;
 
 function TDAO.Inserir: iDAO;
 begin
-
+     Result := Self;
+     var lQuery := TUtils.New(FParent).Query.Insert;
+     FQuery.Query(lQuery, FLista);
 end;
 
 function TDAO.Listar: iDAO;
 begin
-
+     Result := Self;
 end;
 
 function TDAO.ListarPorId: iDAO;
 begin
-
+     Result := Self;
 end;
 
 class function TDAO.New(Parent: IInterface): iDAO;

@@ -3,7 +3,7 @@ unit mvc.model.connection.interfaces;
 interface
 
 uses
-    Data.DB;
+    Data.DB, System.Generics.Collections;
 
 type
     iConnection = interface
@@ -11,8 +11,10 @@ type
     end;
 
     iQuery = interface
-      procedure Query(const Statement: string; Params: array of Variant); overload;
-      function Query(const Statement: Variant; Params: array of Variant): TDataSet; overload;
+      procedure Query(const Statement: String; const Params: Array of Variant); overload;
+      function OneAll(const Statement: Variant; const Params: Array of Variant): TDataSet; overload;
+      procedure Query(const Statement: String; const Params: TDictionary<String, Variant>); overload;
+      function OneAll(const Statement: String; const Params: TDictionary<String, Variant>): TDataSet; overload;
     end;
 
     iConfiguration = interface
