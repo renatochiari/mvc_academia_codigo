@@ -16,15 +16,44 @@ object Form1: TForm1
     Top = 24
     Width = 75
     Height = 25
-    Caption = 'Button1'
+    Caption = 'Insert'
     TabOrder = 0
     OnClick = Button1Click
   end
-  object Memo1: TMemo
-    Left = 89
-    Top = 25
-    Width = 656
-    Height = 432
+  object Button2: TButton
+    Left = 8
+    Top = 55
+    Width = 75
+    Height = 25
+    Caption = 'Update'
     TabOrder = 1
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 8
+    Top = 86
+    Width = 75
+    Height = 25
+    Caption = 'Delete'
+    TabOrder = 2
+    OnClick = Button3Click
+  end
+  object Button4: TButton
+    Left = 8
+    Top = 117
+    Width = 75
+    Height = 25
+    Caption = 'Listar'
+    TabOrder = 3
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 8
+    Top = 148
+    Width = 75
+    Height = 25
+    Caption = 'Listar ID'
+    TabOrder = 4
+    OnClick = Button5Click
   end
 end

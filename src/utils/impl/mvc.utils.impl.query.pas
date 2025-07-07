@@ -62,7 +62,7 @@ begin
                case i.GetValue(FParent).TypeInfo.Kind of
                    tkInteger, tkInt64:
                    begin
-                        if (not i.GetValue(FParent).AsInteger <= 0)
+                        if not(i.GetValue(FParent).AsInteger <= 0)
                         then Value.Add(i.GetAttribute<Campo>.Name, i.GetValue(FParent).AsInteger);
                    end;
                    tkFloat:
@@ -105,7 +105,7 @@ begin
                case i.GetValue(FParent).TypeInfo.Kind of
                    tkInteger, tkInt64:
                    begin
-                        if (not i.GetValue(FParent).AsInteger <= 0)
+                        if not (i.GetValue(FParent).AsInteger <= 0)
                         then Result := Result + i.GetAttribute<Campo>.Name + ', ';
                    end;
                    tkFloat:
@@ -151,7 +151,7 @@ begin
                case i.GetValue(FParent).TypeInfo.Kind of
                    tkInteger, tkInt64:
                    begin
-                        if (not i.GetValue(FParent).AsInteger <= 0)
+                        if not (i.GetValue(FParent).AsInteger <= 0)
                         then Result := Result + i.GetAttribute<Campo>.Name + ' = :' + i.GetAttribute<Campo>.Name + ', ';
                    end;
                    tkFloat:
@@ -207,7 +207,7 @@ begin
                case i.GetValue(FParent).TypeInfo.Kind of
                    tkInteger, tkInt64:
                    begin
-                        if (not i.GetValue(FParent).AsInteger <= 0)
+                        if not (i.GetValue(FParent).AsInteger <= 0)
                         then Result := Result + ':' + i.GetAttribute<Campo>.Name + ', ';
                    end;
                    tkFloat:

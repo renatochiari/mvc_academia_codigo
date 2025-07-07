@@ -10,8 +10,8 @@ type
       function GetNome: string;
       function SetCidade(const Value: string): iCliente;
       function GetCidade: string;
-      function SetEstado(const Value: string): iCliente;
-      function GetEstado: string;
+      function SetUF(const Value: string): iCliente;
+      function GetUF: string;
     end;
 
     iProduto = interface

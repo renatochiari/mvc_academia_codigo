@@ -14,8 +14,8 @@ type
       FNome: string;
       [Campo('CIDADE')]
       FCidade: string;
-      [Campo('ESTADO')]
-      FEstado: string;
+      [Campo('UF')]
+      FUF: string;
 
     public
       class function New: iCliente;
@@ -25,8 +25,8 @@ type
       function GetNome: string;
       function SetCidade(const Value: string): iCliente;
       function GetCidade: string;
-      function SetEstado(const Value: string): iCliente;
-      function GetEstado: string;
+      function SetUF(const Value: string): iCliente;
+      function GetUF: string;
     end;
 
 implementation
@@ -43,9 +43,9 @@ begin
      Result := FCodigo;
 end;
 
-function TCliente.GetEstado: string;
+function TCliente.GetUF: string;
 begin
-     Result := FEstado;
+     Result := FUF;
 end;
 
 function TCliente.GetNome: string;
@@ -70,10 +70,10 @@ begin
      FCodigo := Value;
 end;
 
-function TCliente.SetEstado(const Value: string): iCliente;
+function TCliente.SetUF(const Value: string): iCliente;
 begin
      Result := Self;
-     FEstado := Value;
+     FUF := Value;
 end;
 
 function TCliente.SetNome(const Value: string): iCliente;

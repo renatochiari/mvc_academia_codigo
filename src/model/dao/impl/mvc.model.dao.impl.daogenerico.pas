@@ -39,6 +39,8 @@ uses
 function TDAO.Atualizar: iDAO;
 begin
      Result := Self;
+     var lQuery := TUtils.New(FParent).Query.Update;
+     FQuery.Query(lQuery, FLista);
 end;
 
 constructor TDAO.Create(Parent: IInterface);
@@ -65,6 +67,8 @@ end;
 function TDAO.Excluir: iDAO;
 begin
      Result := Self;
+     var lQuery := TUtils.New(FParent).Query.Delete;
+     FQuery.Query(lQuery, FLista);
 end;
 
 function TDAO.Inserir: iDAO;
@@ -77,11 +81,15 @@ end;
 function TDAO.Listar: iDAO;
 begin
      Result := Self;
+     var lQuery := TUtils.New(FParent).Query.SelectWithWhere(false);
+     FDataSet := FQuery.OneAll(lQuery, []);
 end;
 
 function TDAO.ListarPorId: iDAO;
 begin
      Result := Self;
+     var lQuery := TUtils.New(FParent).Query.SelectWithWhere(True);
+     FDataSet := FQuery.OneAll(lQuery, FLista);
 end;
 
 class function TDAO.New(Parent: IInterface): iDAO;
