@@ -10,20 +10,26 @@ uses
   Vcl.Grids, Vcl.DBGrids, Datasnap.DBClient, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
-  FireDAC.Comp.DataSet, FireDAC.Comp.Client;
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Mask, Vcl.ExtCtrls;
 
 type
-  TForm1 = class(TForm)
-    Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
-    procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
+  TFormPrincipal = class(TForm)
+    Panel1: TPanel;
+    edtCodigoCliente: TLabeledEdit;
+    edtNomeCliente: TLabeledEdit;
+    edtCodigoProduto: TLabeledEdit;
+    edtQuantidade: TLabeledEdit;
+    edtValorUnitario: TLabeledEdit;
+    btnNovoCliente: TButton;
+    btnPesquisarCliente: TButton;
+    edtPesquisarProduto: TButton;
+    edtNovoProduto: TButton;
+    edtConfirmar: TButton;
+    grdProdutos: TDBGrid;
+    btnFinalizarPedido: TButton;
+    btnCancelarPedido: TButton;
+    DataSource1: TDataSource;
+    procedure btnNovoClienteClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -31,58 +37,22 @@ type
   end;
 
 var
-  Form1: TForm1;
+  FormPrincipal: TFormPrincipal;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm1.Button1Click(Sender: TObject);
+uses mvc.view.cadastrocliente;
+
+procedure TFormPrincipal.btnNovoClienteClick(Sender: TObject);
 begin
-     var lController := TController.New;
-     var lCliente := lController.Entity.Cliente
-         .SetNome('Renato')
-         .SetCidade('Dracena')
-         .SetUF('SP');
-
-     lController.Dao(lCliente).Inserir;
-end;
-
-procedure TForm1.Button2Click(Sender: TObject);
-begin
-     var lController := TController.New;
-     var lCliente := lController.Entity.Cliente
-         .SetCodigo(6)
-         .SetNome('Renato Chiari');
-
-     lController.Dao(lCliente).Atualizar;
-end;
-
-procedure TForm1.Button3Click(Sender: TObject);
-begin
-     var lController := TController.New;
-     var lCliente := lController.Entity.Cliente
-         .SetCodigo(7);
-
-     lController.Dao(lCliente).Excluir;
-end;
-
-procedure TForm1.Button4Click(Sender: TObject);
-begin
-     var lController := TController.New;
-     var lCliente := lController.Entity.Cliente;
-
-     var dataSet := lController.Dao(lCliente).Listar.DataSet;
-     ShowMessage(dataSet.RecordCount.ToString);
-end;
-
-procedure TForm1.Button5Click(Sender: TObject);
-begin
-     var lController := TController.New;
-     var lCliente := lController.Entity.Cliente.SetCodigo(9);
-
-     var dataSet := lController.Dao(lCliente).ListarPorId.DataSet;
-     ShowMessage(dataSet.RecordCount.ToString);
+     var lCliente := TFormCliente.Create(nil);
+     try
+          lCliente.ShowModal;
+     finally
+          lCliente.Free;
+     end;
 end;
 
 end.

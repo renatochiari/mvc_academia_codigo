@@ -2,7 +2,7 @@ program MVC;
 
 uses
   Vcl.Forms,
-  mvc.view.principal in 'view\mvc.view.principal.pas' {Form1},
+  mvc.view.principal in 'view\mvc.view.principal.pas' {FormPrincipal},
   mvc.model.entity.interfaces in 'model\entity\mvc.model.entity.interfaces.pas',
   mvc.model.entity.impl.cliente in 'model\entity\impl\mvc.model.entity.impl.cliente.pas',
   mvc.model.entity.impl.produto in 'model\entity\impl\mvc.model.entity.impl.produto.pas',
@@ -21,13 +21,14 @@ uses
   mvc.utils.impl.atributos in 'utils\impl\mvc.utils.impl.atributos.pas',
   mvc.controller.interfaces in 'controller\mvc.controller.interfaces.pas',
   mvc.controller.imple.controller in 'controller\impl\mvc.controller.imple.controller.pas',
-  mvc.utils.impl.utils in 'utils\impl\mvc.utils.impl.utils.pas';
+  mvc.utils.impl.utils in 'utils\impl\mvc.utils.impl.utils.pas',
+  mvc.view.cadastrocliente in 'view\mvc.view.cadastrocliente.pas' {FormCliente};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TFormPrincipal, FormPrincipal);
   Application.Run;
 end.

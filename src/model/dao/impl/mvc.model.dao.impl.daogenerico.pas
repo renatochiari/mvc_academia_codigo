@@ -14,6 +14,7 @@ type
       FConexao: iConnection;
       FQuery: iQuery;
       FDataSet: TDataSet;
+      FDataSource: TDataSource;
       FLista: TDictionary<string, Variant>;
 
     public
@@ -22,10 +23,11 @@ type
       class function New(Parent: IInterface): iDAO;
       function Listar: iDAO;
       function ListarPorId: iDAO;
+      function ListarPor: iDAO;
       function Excluir: iDAO;
       function Atualizar: iDAO;
       function Inserir: iDAO;
-      function DataSet: TDataSet;
+      function DataSource(Value: TDataSource): iDAO;
 
     end;
 
@@ -53,9 +55,11 @@ begin
      TUtils.New(FParent).Query.FieldParameter(FLista);
 end;
 
-function TDAO.DataSet: TDataSet;
+function TDAO.DataSource(Value: TDataSource): iDAO;
 begin
-     Result := FDataSet;
+     Result := Self;
+     FDataSource := Value;
+     FDataSource.DataSet := FDataSet;
 end;
 
 destructor TDAO.Destroy;
@@ -83,6 +87,11 @@ begin
      Result := Self;
      var lQuery := TUtils.New(FParent).Query.SelectWithWhere(false);
      FDataSet := FQuery.OneAll(lQuery, []);
+end;
+
+function TDAO.ListarPor: iDAO;
+begin
+
 end;
 
 function TDAO.ListarPorId: iDAO;
