@@ -91,7 +91,9 @@ end;
 
 function TDAO.ListarPor: iDAO;
 begin
-
+     Result := Self;
+     var lQuery := TUtils.New(FParent).Query.SelectWithWhere(True);
+     FDataSet := FQuery.OneAll(lQuery, FLista);
 end;
 
 function TDAO.ListarPorId: iDAO;

@@ -19,10 +19,6 @@ object FormCliente: TFormCliente
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 232
-    ExplicitTop = 224
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     DesignSize = (
       526
       193)
@@ -48,7 +44,6 @@ object FormCliente: TFormCliente
       EditLabel.Caption = 'Nome'
       TabOrder = 1
       Text = ''
-      ExplicitWidth = 490
     end
     object edtCidade: TLabeledEdit
       Left = 24
@@ -61,7 +56,6 @@ object FormCliente: TFormCliente
       EditLabel.Caption = 'Cidade'
       TabOrder = 2
       Text = ''
-      ExplicitWidth = 490
     end
     object edtEstado: TLabeledEdit
       Left = 422
@@ -74,7 +68,6 @@ object FormCliente: TFormCliente
       EditLabel.Caption = 'Estado'
       TabOrder = 3
       Text = ''
-      ExplicitLeft = 520
     end
     object btnSalvar: TButton
       Left = 428
@@ -85,7 +78,6 @@ object FormCliente: TFormCliente
       Caption = 'Salvar'
       TabOrder = 4
       OnClick = btnSalvarClick
-      ExplicitTop = 150
     end
     object btnCancelar: TButton
       Left = 347
@@ -95,7 +87,6 @@ object FormCliente: TFormCliente
       Anchors = [akRight, akBottom]
       Caption = 'Cancelar'
       TabOrder = 5
-      ExplicitTop = 150
     end
   end
 end

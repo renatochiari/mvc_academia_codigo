@@ -30,8 +30,11 @@ type
     btnCancelarPedido: TButton;
     DataSource1: TDataSource;
     procedure btnNovoClienteClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure btnFinalizarPedidoClick(Sender: TObject);
   private
-    { Private declarations }
+    FController: iController;
+
   public
     { Public declarations }
   end;
@@ -45,6 +48,11 @@ implementation
 
 uses mvc.view.cadastrocliente;
 
+procedure TFormPrincipal.btnFinalizarPedidoClick(Sender: TObject);
+begin
+     FController.Dao(FController.Entity.Cliente).Listar.DataSource(DataSource1);
+end;
+
 procedure TFormPrincipal.btnNovoClienteClick(Sender: TObject);
 begin
      var lCliente := TFormCliente.Create(nil);
@@ -53,6 +61,11 @@ begin
      finally
           lCliente.Free;
      end;
+end;
+
+procedure TFormPrincipal.FormCreate(Sender: TObject);
+begin
+     FController := TController.New;
 end;
 
 end.

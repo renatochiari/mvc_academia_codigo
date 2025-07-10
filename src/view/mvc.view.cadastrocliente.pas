@@ -48,23 +48,6 @@ begin
                        .SetUF(edtEstado.Text);
 
      FController.Dao(lCliente).Inserir;
-
-     var lRetorno := TDataSource.Create(nil);
-     try
-          FController.Dao(lCliente).Listar.DataSource(lRetorno);
-          lRetorno.DataSet.Locate('NOME', edtNome.Text, []);
-
-          FCodigo := lRetorno.DataSet.FieldByName('CODIGO').AsInteger;
-          FNome := lRetorno.DataSet.FieldByName('NOME').AsString;
-          FCidade := lRetorno.DataSet.FieldByName('CIDADE').AsString;
-          FEstado := lRetorno.DataSet.FieldByName('UF').AsString;
-
-          ShowMessage('Cliente cadastrado com sucesso!');
-          LimparCampos;
-
-     finally
-          lRetorno.Free;
-     end;
 end;
 
 procedure TFormCliente.LimparCampos;

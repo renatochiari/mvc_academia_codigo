@@ -10,6 +10,7 @@ object FormPrincipal: TFormPrincipal
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -19,9 +20,6 @@ object FormPrincipal: TFormPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitWidth = 771
-    ExplicitHeight = 488
     DesignSize = (
       731
       489)
@@ -73,7 +71,7 @@ object FormPrincipal: TFormPrincipal
       Left = 222
       Top = 96
       Width = 81
-      Height = 22
+      Height = 23
       EditLabel.Width = 70
       EditLabel.Height = 15
       EditLabel.Caption = 'Valor unit'#225'rio'
@@ -121,7 +119,6 @@ object FormPrincipal: TFormPrincipal
       Anchors = [akTop, akRight]
       Caption = 'Confirmar'
       TabOrder = 9
-      ExplicitLeft = 627
     end
     object grdProdutos: TDBGrid
       Left = 24
@@ -145,7 +142,7 @@ object FormPrincipal: TFormPrincipal
       Anchors = [akLeft, akBottom]
       Caption = 'Finalizar pedido'
       TabOrder = 11
-      ExplicitTop = 472
+      OnClick = btnFinalizarPedidoClick
     end
     object btnCancelarPedido: TButton
       Left = 135
@@ -155,7 +152,6 @@ object FormPrincipal: TFormPrincipal
       Anchors = [akLeft, akBottom]
       Caption = 'Cancelar pedido'
       TabOrder = 12
-      ExplicitTop = 472
     end
   end
   object DataSource1: TDataSource
