@@ -58,6 +58,9 @@ begin
      var lCliente := TFormCliente.Create(nil);
      try
           lCliente.ShowModal;
+          edtCodigoCliente.Text := lCliente.Codigo.ToString;
+          edtNomeCliente.Text := lCliente.Nome;
+
      finally
           lCliente.Free;
      end;

@@ -20,6 +20,8 @@ object FormPrincipal: TFormPrincipal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 0
+    ExplicitLeft = 64
+    ExplicitTop = 56
     DesignSize = (
       731
       489)

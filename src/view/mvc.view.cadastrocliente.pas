@@ -17,6 +17,7 @@ type
     btnSalvar: TButton;
     btnCancelar: TButton;
     procedure btnSalvarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     FController: iController;
     FCodigo: Integer;
@@ -48,6 +49,27 @@ begin
                        .SetUF(edtEstado.Text);
 
      FController.Dao(lCliente).Inserir;
+
+     var lDataSource := TDataSource.Create(nil);
+     try
+          FController.Dao(lCliente).Listar.DataSource(lDataSource);
+
+          lDataSource.DataSet.Locate('NOME;CIDADE;UF', VarArrayOf([lCliente.GetNome, lCliente.GetCidade, lCliente.GetUF]), []);
+          FCodigo := lDataSource.DataSet.FieldByName('CODIGO').AsInteger;
+          FNome := lDataSource.DataSet.FieldByName('NOME').AsString;
+
+          ShowMessage('Cadastro efetuado com sucesso!');
+          LimparCampos;
+          Self.Close;
+
+     finally
+          lDataSource.Free;
+     end;
+end;
+
+procedure TFormCliente.FormCreate(Sender: TObject);
+begin
+     FController := TController.New;
 end;
 
 procedure TFormCliente.LimparCampos;
